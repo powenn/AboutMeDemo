@@ -1,5 +1,6 @@
 *.ipa
 *.DS_Store
+Payload
 build
 xcuserdata
 xcshareddata
