@@ -1,0 +1,23 @@
+name: Build AboutMe.ipa
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: brew install ldid xz
+      - uses: actions/checkout@v2
+      - name: submodules-init
+        uses: snickerbockers/submodules-init@v4
+      - name: Build
+        run: |
+          chmod +x ./compile.command
+          /bin/bash -c ./compile.command
+      - name: Upload AboutMe.ipa
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: "AboutMe.ipa"
+          path: "AboutMe.ipa"
