@@ -27,24 +27,29 @@ struct InfoView: View {
                     }
                 }
                 VStack{
-                    Button(action: {
-                        self.counter -= 1
-                        while counter == 0 {
-                            counter = 10
-                            if let url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") {
-                                UIApplication.shared.open(url)
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            self.counter -= 1
+                            while counter == 0 {
+                                counter = 10
+                                if let url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") {
+                                    UIApplication.shared.open(url)
+                                }
                             }
+                        }) {
+                            Circle()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(Color("CustomBlue"))
+                                .overlay(
+                                    Text("\(counter)")
+                                        .font(.system(size: 50, weight: .bold, design: .rounded))
+                                        .foregroundColor(.white)
+                                )
                         }
-                    }) {
-                        Circle()
-                            .frame(width: 300, height: 100)
-                            .foregroundColor(Color("CustomBlue"))
-                            .overlay(
-                                Text("\(counter)")
-                                    .font(.system(size: 50, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                            )
+                        Spacer()
                     }
+                    .padding(5)
                 }
             }
             
