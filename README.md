@@ -3,14 +3,12 @@
 
 ![photo][0]
 
-
-
 ## About the App 
 
-It's my first iOS App ,written in SwiftUI,it's for personal practice
+It's my first iOS App ,written in SwiftUI,just for personal practice
 
 ### What can this do ?
 
-Introducing yourself
+Introduce yourself
 
 [0]:https://github.com/powenn/AboutMeDemo/blob/main/photos/01.png
