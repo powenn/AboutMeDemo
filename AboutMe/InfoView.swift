@@ -88,7 +88,6 @@ struct InfoView: View {
                 .onDisappear() {
                     prankVideoPlayer.pause()
                 }
-        
         }
     }
 }
