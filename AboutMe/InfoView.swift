@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct InfoView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var counter = 10
+    @State private var counter = 5
+    
+    @State private var playVideo:Bool = false
+    let prankVideoPlayer = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mov")!))
     
     var body: some View {
         NavigationView {
@@ -32,10 +36,8 @@ struct InfoView: View {
                         Button(action: {
                             self.counter -= 1
                             while counter == 0 {
-                                counter = 10
-                                if let url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") {
-                                    UIApplication.shared.open(url)
-                                }
+                                counter = 5
+                                playVideo = true
                             }
                         }) {
                             Circle()
@@ -57,7 +59,6 @@ struct InfoView: View {
             .navigationViewStyle(StackNavigationViewStyle())
         }
         
-        
         .overlay(
             HStack {
                 Spacer()
@@ -77,6 +78,18 @@ struct InfoView: View {
                 }
             }
         )
+        .fullScreenCover(isPresented: $playVideo) {
+            VideoPlayer(player: prankVideoPlayer)
+                .ignoresSafeArea(.all)
+                .onAppear() {
+                    prankVideoPlayer.play()
+                    prankVideoPlayer.seek(to: .zero)
+                }
+                .onDisappear() {
+                    prankVideoPlayer.pause()
+                }
+        
+        }
     }
 }
 

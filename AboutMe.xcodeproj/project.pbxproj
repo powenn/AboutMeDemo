@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B548E3FE283477260068FAA2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548E3FD283477260068FAA2 /* InfoView.swift */; };
+		B56377222836671A0089B611 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = B56377212836671A0089B611 /* video.mov */; };
 		B5B8F30328333251004F17C6 /* AboutMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8F30228333251004F17C6 /* AboutMeApp.swift */; };
 		B5B8F30528333251004F17C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8F30428333251004F17C6 /* ContentView.swift */; };
 		B5B8F30728333256004F17C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B8F30628333256004F17C6 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		B548E3FD283477260068FAA2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		B56377212836671A0089B611 /* video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = video.mov; sourceTree = "<group>"; };
 		B5B8F2FF28333251004F17C6 /* AboutMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AboutMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B8F30228333251004F17C6 /* AboutMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeApp.swift; sourceTree = "<group>"; };
 		B5B8F30428333251004F17C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5637720283662240089B611 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B56377212836671A0089B611 /* video.mov */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		B5B8F2F628333251004F17C6 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 				B5B8F3232833D75E004F17C6 /* ArticleDeatilView.swift */,
 				B548E3FD283477260068FAA2 /* InfoView.swift */,
 				B5B8F3212833D51B004F17C6 /* Article.swift */,
+				B5637720283662240089B611 /* Sources */,
 				B5B8F30628333256004F17C6 /* Assets.xcassets */,
 				B5B8F30828333256004F17C6 /* Preview Content */,
 			);
@@ -151,6 +162,7 @@
 				B5B8F31128334D27004F17C6 /* compile.command in Resources */,
 				B5B8F30A28333256004F17C6 /* Preview Assets.xcassets in Resources */,
 				B5B8F32028338D66004F17C6 /* Launch Screen.storyboard in Resources */,
+				B56377222836671A0089B611 /* video.mov in Resources */,
 				B5B8F30728333256004F17C6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
