@@ -9,6 +9,8 @@ GIT_ROOT=$(pwd)
 
 rm -rf build Payload AboutMe.ipa
 
+#xcodebuild -workspace "$GIT_ROOT/AboutMe.xcworkspace" \
+
 xcodebuild -project "$GIT_ROOT/AboutMe.xcodeproj" \
  -scheme AboutMe -configuration Release \
  -derivedDataPath "$GIT_ROOT/build" \

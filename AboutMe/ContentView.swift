@@ -15,7 +15,7 @@ struct ContentView: View {
                 WeclomeView(NextPageClicked: self.$NextPageClicked)
             }
             else {
-                ArticleView()
+                MainView()
             }
         }
     }
@@ -25,7 +25,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .previewDevice("iPhone 11 Pro")
         }
     }
 }

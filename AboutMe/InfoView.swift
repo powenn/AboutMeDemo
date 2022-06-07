@@ -6,89 +6,58 @@
 //
 
 import SwiftUI
-import AVKit
+import BetterSafariView
 
 struct InfoView: View {
+    @State private var showWebPage = false
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     @Environment(\.presentationMode) var presentationMode
-    @State private var counter = 5
-    
-    @State private var playVideo:Bool = false
-    let prankVideoPlayer = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mov")!))
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Details of the app")) {
-                    HStack {
-                        Link(destination: URL(string: "https://github.com/powenn/AboutMeDemo")!, label: {
-                            Text("Source Code")
-                        })
-                        Spacer()
-                            .padding(.trailing)
-                        Image("GithubIcon")
-                            .resizable()
-                            .frame(width: 32.0, height: 32.0, alignment: .leading)
-                    }
+        Form{
+            Section(header: Text("App Version")){
+                    Text("\(appVersion!)")
+            }
+            Section(header: Text("My Github Account")) {
+                HStack {
+                    Text("powenn")
+                        .foregroundColor(.accentColor)
+                    Spacer()
+                        .padding(.trailing)
+                    Image("GithubIcon")
+                        .resizable()
+                        .frame(width: 32.0, height: 32.0, alignment: .leading)
                 }
-                VStack{
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            self.counter -= 1
-                            while counter == 0 {
-                                counter = 5
-                                playVideo = true
-                            }
-                        }) {
-                            Circle()
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(Color("CustomBlue"))
-                                .overlay(
-                                    Text("\(counter)")
-                                        .font(.system(size: 50, weight: .bold, design: .rounded))
-                                        .foregroundColor(.white)
-                                )
-                        }
-                        Spacer()
-                    }
-                    .padding(5)
+                .onTapGesture {
+                    showWebPage.toggle()
+                }
+                .safariView(isPresented: $showWebPage) {
+                    SafariView(
+                        url: URL(string: "https://github.com/powenn")!,
+                        configuration: SafariView.Configuration(
+                            entersReaderIfAvailable: false,
+                            barCollapsingEnabled: true
+                        )
+                    )
+                    .preferredBarAccentColor(.white)
+                    .preferredControlAccentColor(.accentColor)
+                    .dismissButtonStyle(.close)
                 }
             }
-            
-            .navigationBarTitle("Info")
-            .navigationViewStyle(StackNavigationViewStyle())
         }
         
-        .overlay(
-            HStack {
-                Spacer()
-                
-                VStack {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.down.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.gray)
-                    })
-                    .padding(.trailing,20)
-                    .padding(.top,40)
-                    
-                    Spacer()
-                }
-            }
-        )
-        .fullScreenCover(isPresented: $playVideo) {
-            VideoPlayer(player: prankVideoPlayer)
-                .ignoresSafeArea(.all)
-                .onAppear() {
-                    prankVideoPlayer.play()
-                    prankVideoPlayer.seek(to: .zero)
-                }
-                .onDisappear() {
-                    prankVideoPlayer.pause()
-                }
-        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.backward.circle.fill")
+                .font(.title)
+                .foregroundColor(Color("CustomBlue"))
+            Text("其他")
+                .font(.body)
+                .foregroundColor(Color("CustomBlue"))
+        }))
     }
 }
 
@@ -97,3 +66,4 @@ struct InfoView_Previews: PreviewProvider {
         InfoView()
     }
 }
+

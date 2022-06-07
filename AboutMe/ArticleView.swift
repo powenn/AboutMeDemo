@@ -9,36 +9,22 @@ import SwiftUI
 
 struct ArticleView: View {
     @State var selectedArticle : Article?
-    @State var showInfo : Bool = false
     var body: some View {
-        NavigationView {
+        NavigationView {            
             List(articles) { article in
-                ArticleRow(article: article)
-                    .onTapGesture {
-                        self.selectedArticle = article
+                ZStack{
+                    NavigationLink(destination: ArticleDeatilView(article: article)) {
+                        EmptyView()
                     }
-                    .sheet(item: self.$selectedArticle) { article in ArticleDeatilView(article: article)
-                    }
+                    .opacity(0)
+                    ArticleRow(article: article)
+                }
             }
-            .navigationBarTitle("我的資料")
-            .navigationBarItems(trailing :
-                                    
-                                    Button(action: {
-                self.showInfo = true
-            }, label: {
-                Image(systemName:"info.circle")
-                    .font(.title)
-                    .foregroundColor(.black)
-            })
-                                
-            )
-            .sheet(isPresented: $showInfo){
-                InfoView()
-            }
+            .navigationBarTitle("作品集")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
-    
 }
 
 struct ArticleRow: View {
@@ -60,7 +46,6 @@ struct ArticleRow: View {
             Text(article.excerpt)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            
         }
     }
 }
@@ -69,7 +54,7 @@ struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ArticleView()
-                .previewDevice("iPhone 11 Pro")
         }
     }
 }
+

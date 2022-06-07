@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Liquid
 
 struct WeclomeView: View {
     @Binding var NextPageClicked:Bool
@@ -15,20 +16,36 @@ struct WeclomeView: View {
             .overlay(
                 VStack(spacing: 20) {
                     Spacer()
-                    Text("AboutMe")
-                        .font(.system(size: 60, weight: .semibold, design: .rounded))
-                        .foregroundColor(.black)
-                        .bold()
-                        .rotation3DEffect(.degrees(30), axis: (x:1,y:0,z:0))
-                        .shadow(color: .gray, radius: 1, x: 0, y: 5)
-                    
+                    ZStack {
+                        Liquid(period: 15)
+                            .frame(width: 260, height: 280)
+                            .foregroundColor(.blue)
+                            .opacity(0.3)
+                        
+                        Liquid(samples: 4, period: 5)
+                            .frame(width: 240, height: 260)
+                            .foregroundColor(Color("CustomBlue"))
+                            .opacity(0.6)
+                        
+                        Liquid(samples: 6)
+                            .frame(width: 220, height: 220)
+                            .foregroundColor(Color("CustomBlue"))
+                            .opacity(0.8)
+                        
+                        Text("AboutMe")
+                            .font(.system(size: 50, weight: .semibold, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .rotation3DEffect(.degrees(30), axis: (x:1,y:0,z:0))
+                            .shadow(color: .gray, radius: 1, x: 0, y: 5)
+                    }
                     Text("A Simple App\nIntroducing Myself")
-                        .font(.system(size: 25, weight: .light, design: .monospaced))
+                        .font(.system(size: 20, weight: .light, design: .monospaced))
                         .foregroundColor(Color(hue: 1.0, saturation: 0.046, brightness: 0.18, opacity: 0.873))
                         .multilineTextAlignment(.center)
-                        .padding()
+                        .padding(.bottom, -10.0)
                     Text("Written in SwiftUI\nby powen")
-                        .font(.system(size: 20, weight: .light, design: .monospaced))
+                        .font(.system(size: 12, weight: .light, design: .monospaced))
                         .foregroundColor(Color(hue: 1.0, saturation: 0.077, brightness: 0.482, opacity: 0.614))
                         .multilineTextAlignment(.center)
                         .rotation3DEffect(.degrees(-30), axis: (x:1,y:0,z:0))
@@ -58,9 +75,8 @@ struct WeclomeView: View {
     }
 }
 
-//struct WeclomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WeclomeView(NextPageClicked: .constant(true))
-//            .previewDevice("iPhone 11 Pro")
-//    }
-//}
+struct WeclomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        WeclomeView(NextPageClicked: .constant(false))
+    }
+}

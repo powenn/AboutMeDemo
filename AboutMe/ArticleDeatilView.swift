@@ -33,31 +33,18 @@ struct ArticleDeatilView: View {
                     .multilineTextAlignment(.leading)
             }
         }
-        // Dismiss button code area
-        
-        .overlay(
-            HStack {
-                Spacer()
-                
-                VStack {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.down.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(Color("CustomBlue"))
-                    })
-                    .padding(.trailing,20)
-                    .padding(.top,40)
-                    
-                    Spacer()
-                }
-            }
-        )
-        
-        // Dismiss button code area
-        
-        .edgesIgnoringSafeArea(.top)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.backward.circle.fill")
+                .font(.title)
+                .foregroundColor(Color("CustomBlue"))
+            Text("作品集")
+                .font(.body)
+                .foregroundColor(Color("CustomBlue"))
+        }))
     }
 }
 
@@ -66,5 +53,17 @@ struct ArticleDeatilView_Previews: PreviewProvider {
         NavigationView {
             ArticleDeatilView(article: articles[0])
         }
+    }
+}
+
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }
