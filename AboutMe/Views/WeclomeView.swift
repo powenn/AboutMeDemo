@@ -11,34 +11,12 @@ import Liquid
 struct WeclomeView: View {
     @Binding var NextPageClicked:Bool
     var body: some View {
-        LinearGradient(gradient:Gradient(colors:                 [Color("LightBlue"),Color("LightPurple")]),startPoint: .topLeading,endPoint: .bottomTrailing)
+        LinearGradient(gradient:Gradient(colors: [Color("LightBlue"),Color("LightPurple")]),startPoint: .topLeading,endPoint: .bottomTrailing)
             .ignoresSafeArea()
             .overlay(
                 VStack(spacing: 20) {
                     Spacer()
-                    ZStack {
-                        Liquid(period: 15)
-                            .frame(width: 260, height: 280)
-                            .foregroundColor(.blue)
-                            .opacity(0.3)
-                        
-                        Liquid(samples: 4, period: 5)
-                            .frame(width: 240, height: 260)
-                            .foregroundColor(Color("CustomBlue"))
-                            .opacity(0.6)
-                        
-                        Liquid(samples: 6)
-                            .frame(width: 220, height: 220)
-                            .foregroundColor(Color("CustomBlue"))
-                            .opacity(0.8)
-                        
-                        Text("AboutMe")
-                            .font(.system(size: 50, weight: .semibold, design: .rounded))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .rotation3DEffect(.degrees(30), axis: (x:1,y:0,z:0))
-                            .shadow(color: .gray, radius: 1, x: 0, y: 5)
-                    }
+                    LiquidTextView()
                     Text("A Simple App\nIntroducing Myself")
                         .font(.system(size: 20, weight: .light, design: .monospaced))
                         .foregroundColor(Color(hue: 1.0, saturation: 0.046, brightness: 0.18, opacity: 0.873))
@@ -72,6 +50,34 @@ struct WeclomeView: View {
                     }
                 }
             )
+    }
+}
+
+struct LiquidTextView: View {
+    var body: some View {
+        ZStack {
+            Liquid(period: 15)
+                .frame(width: 260, height: 280)
+                .foregroundColor(.blue)
+                .opacity(0.3)
+            
+            Liquid(samples: 4, period: 5)
+                .frame(width: 240, height: 260)
+                .foregroundColor(Color("CustomBlue"))
+                .opacity(0.6)
+            
+            Liquid(samples: 6)
+                .frame(width: 220, height: 220)
+                .foregroundColor(Color("CustomBlue"))
+                .opacity(0.8)
+            
+            Text("AboutMe")
+                .font(.system(size: 50, weight: .semibold, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .rotation3DEffect(.degrees(30), axis: (x:1,y:0,z:0))
+                .shadow(color: .gray, radius: 1, x: 0, y: 5)
+        }
     }
 }
 

@@ -9,9 +9,28 @@ import SwiftUI
 import BetterSafariView
 
 struct InfoView: View {
-    @State private var showWebPage = false
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
     @Environment(\.presentationMode) var presentationMode
+    var body: some View {
+        InfoForm()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.backward.circle.fill")
+                .font(.title)
+                .foregroundColor(Color("CustomBlue"))
+            Text("其他")
+                .font(.body)
+                .foregroundColor(Color("CustomBlue"))
+        }))
+    }
+}
+
+struct InfoForm: View {
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    @State private var showWebPage = false
     
     var body: some View {
         Form{
@@ -45,19 +64,6 @@ struct InfoView: View {
                 }
             }
         }
-        
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }, label: {
-            Image(systemName: "chevron.backward.circle.fill")
-                .font(.title)
-                .foregroundColor(Color("CustomBlue"))
-            Text("其他")
-                .font(.body)
-                .foregroundColor(Color("CustomBlue"))
-        }))
     }
 }
 
